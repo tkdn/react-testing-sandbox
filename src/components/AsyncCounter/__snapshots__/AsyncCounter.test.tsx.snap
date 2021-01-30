@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AsyncCounter render 1`] = `
+<DocumentFragment>
+  <div>
+    AsyncCount: 0
+  </div>
+  <div>
+    <button>
+      AsyncIncrement
+    </button>
+  </div>
+</DocumentFragment>
+`;

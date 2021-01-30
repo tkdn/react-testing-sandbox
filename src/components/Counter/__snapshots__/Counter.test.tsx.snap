@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter render 1`] = `
+<DocumentFragment>
+  <div>
+    Count: 0
+  </div>
+  <div>
+    <button>
+      Increment
+    </button>
+  </div>
+</DocumentFragment>
+`;
