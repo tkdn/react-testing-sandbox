@@ -1,9 +1,26 @@
 {
   "name": "react-testing-sandbox",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "tkdn <tkdnation@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "test": "jest"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ],
+    "testMatch": [
+      "**/*.test.ts",
+      "**/*.test.tsx"
+    ],
+    "verbose": true,
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    }
+  },
   "dependencies": {
     "next": "^10.0.6",
     "react": "^17.0.1",
