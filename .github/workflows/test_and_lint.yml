@@ -1,0 +1,34 @@
+on:
+  push:
+    branches-ignore:
+      - master
+
+name: Test, Lint and...
+
+jobs:
+  test-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ env.cache-name }}-
+
+      - name: npm install
+        run: npm ci
+
+      - name: linting
+        run: npm run lint
+
+      - name: type check 
+        run: npm run typecheck
+
+      - name: unit test
+        run: npm run test
