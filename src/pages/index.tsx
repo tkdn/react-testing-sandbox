@@ -2,6 +2,8 @@ import { Analytics } from "~/components/Analytics"
 import { AsyncCounter } from "~/components/AsyncCounter"
 import { Counter } from "~/components/Counter"
 import { Header } from "~/components/Header"
+import { NativeFetch } from "~/components/NativeFetch"
+
 export default function Index() {
   return (
     <>
@@ -15,10 +17,11 @@ export default function Index() {
       <AsyncCounter />
       <hr />
       <h1>Analytics</h1>
-      <p>
-        <pre>null</pre>
-      </p>
+      <pre>null</pre>
       <Analytics id="123" role="admin" />
+      <hr />
+      <h1>NativeFetch</h1>
+      <NativeFetch size={5} />
     </>
   )
 }
