@@ -7,18 +7,20 @@ const pokemons = [
   {
     id: "UG9rZW1vbjowMDE=",
     image: "https://img.pokemondb.net/artwork/bulbasaur.jpg",
-    name: "Bulbasaur"
+    name: "Bulbasaur",
+    __typename: "Pokemon"
   },
   {
     id: "UG9rZW1vbjowMDI=",
     image: "https://img.pokemondb.net/artwork/ivysaur.jpg",
-    name: "Ivysaur"
+    name: "Ivysaur",
+    __typename: "Pokemon"
   }
 ]
-const WrappedNativeFetch = () => {
+const WrappedNativeFetch = ({ size }: { size: number }) => {
   return (
     <ErrorBoundary>
-      <NativeFetch size={5} />
+      <NativeFetch size={size} />
     </ErrorBoundary>
   )
 }
@@ -57,36 +59,37 @@ describe("NativeFetch", () => {
   })
   test("render:loding", async () => {
     global.fetch = jest.fn().mockImplementation(dataPokemonsMock)
+    const { asFragment } = render(<WrappedNativeFetch size={5} />)
+    screen.getByText("loading...")
+    expect(asFragment()).toMatchSnapshot()
     await act(async () => {
-      const { asFragment } = render(<WrappedNativeFetch />)
-      screen.getByText("loading...")
-      expect(asFragment()).toMatchSnapshot()
+      await waitForElementToBeRemoved(() => screen.getByText("loading..."))
     })
   })
   test("render:pokemons", async () => {
     global.fetch = jest.fn().mockImplementation(dataPokemonsMock)
+    const { asFragment } = render(<WrappedNativeFetch size={5} />)
+    screen.getByText("loading...")
     await act(async () => {
-      const { asFragment } = render(<WrappedNativeFetch />)
-      screen.getByText("loading...")
       await waitForElementToBeRemoved(() => screen.getByText("loading..."))
-      expect(asFragment()).toMatchSnapshot()
     })
+    expect(asFragment()).toMatchSnapshot()
   })
   test("render:no pokemon", async () => {
     global.fetch = jest.fn().mockImplementation(noDataPokemonsMock)
+    const { asFragment } = render(<WrappedNativeFetch size={0} />)
     await act(async () => {
-      const { asFragment } = render(<WrappedNativeFetch />)
       await waitFor(() => screen.getByText("no pokemon"))
-      expect(asFragment()).toMatchSnapshot()
     })
+    expect(asFragment()).toMatchSnapshot()
   })
   test("error", async () => {
     global.fetch = jest.fn().mockImplementation(statusErrorPokemonMock)
     const spy = jest.spyOn(console, "error")
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     spy.mockImplementation(() => {})
+    render(<WrappedNativeFetch size={5} />)
     await act(async () => {
-      render(<WrappedNativeFetch />)
       await waitFor(() => screen.getByText("http status: 400"))
     })
     spy.mockRestore()

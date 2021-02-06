@@ -1,19 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { fetchPokemons } from "~/api/fetchPokemons"
-
-type Pokemon = {
-  id: string
-  image: string
-  name: string
-  attacks: Array<{
-    special: {
-      name: string
-      type: string
-      damage: number
-    }
-  }>
-}
+import { fetchPokemons, Pokemon } from "~/api/fetchPokemons"
 
 export function usePokemons(size: number) {
   const [loading, setLoading] = useState(false)
