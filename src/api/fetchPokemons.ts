@@ -6,18 +6,34 @@ const pokemonQuery = `
       number
       name
       image
+      __typename
       attacks {
+        __typename
         special {
           name
           type
           damage
+          __typename
         }
       }
     }
   }
 `
 
-export async function fetchPokemons(size: number) {
+export type Pokemon = {
+  id: string
+  image: string
+  name: string
+  attacks: Array<{
+    special: {
+      name: string
+      type: string
+      damage: number
+    }
+  }>
+}
+
+export async function fetchPokemons(size: number): Promise<Pokemon[]> {
   const response = await fetch(API_ENDPOINT, {
     method: "POST",
     headers: {
