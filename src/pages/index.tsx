@@ -1,8 +1,13 @@
+import { QueryClient, QueryClientProvider } from "react-query"
+
 import { Analytics } from "~/components/Analytics"
 import { AsyncCounter } from "~/components/AsyncCounter"
 import { Counter } from "~/components/Counter"
 import { Header } from "~/components/Header"
 import { NativeFetch } from "~/components/NativeFetch"
+import { ReactQuery } from "~/components/ReactQuery"
+
+const client = new QueryClient()
 
 export default function Index() {
   return (
@@ -22,6 +27,11 @@ export default function Index() {
       <hr />
       <h1>NativeFetch</h1>
       <NativeFetch size={5} />
+      <hr />
+      <h1>ReactQuery</h1>
+      <QueryClientProvider client={client}>
+        <ReactQuery size={5} />
+      </QueryClientProvider>
     </>
   )
 }
