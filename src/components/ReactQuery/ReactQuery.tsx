@@ -1,8 +1,8 @@
 import { usePokemonsWithReactQuery } from "~/hooks/usePokemonsWithReactQuery"
 
 export function ReactQuery({ size }: { size: number }) {
-  const { data: pokemons, error, isFetching } = usePokemonsWithReactQuery(size)
-  if (error) {
+  const { data: pokemons, error, isFetching, isError } = usePokemonsWithReactQuery(size)
+  if (isError) {
     throw error
   }
   if (isFetching || !pokemons) {

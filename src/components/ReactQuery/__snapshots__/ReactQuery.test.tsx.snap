@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReactQuery render:loding 1`] = `
+<DocumentFragment>
+  <p>
+    loading...
+  </p>
+</DocumentFragment>
+`;
+
+exports[`ReactQuery render:no pokemon 1`] = `
+<DocumentFragment>
+  <p>
+    no pokemon
+  </p>
+</DocumentFragment>
+`;
+
+exports[`ReactQuery render:pokemons 1`] = `
+<DocumentFragment>
+  <ul>
+    <li>
+      <img
+        src="https://img.pokemondb.net/artwork/bulbasaur.jpg"
+        width="120"
+      />
+      <p>
+        Bulbasaur
+      </p>
+    </li>
+    <li>
+      <img
+        src="https://img.pokemondb.net/artwork/ivysaur.jpg"
+        width="120"
+      />
+      <p>
+        Ivysaur
+      </p>
+    </li>
+  </ul>
+</DocumentFragment>
+`;
