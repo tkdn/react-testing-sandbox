@@ -40,8 +40,7 @@ describe("NativeFetch", () => {
   })
   test("error", async () => {
     const spy = jest.spyOn(console, "error")
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    spy.mockImplementation(() => {})
+    spy.mockImplementation(() => void 0)
     render(<WrappedNativeFetch size={400} />)
     await act(async () => {
       await waitFor(() => screen.getByText("http status: 400"))
