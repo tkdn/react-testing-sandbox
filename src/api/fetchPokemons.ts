@@ -1,5 +1,5 @@
-const API_ENDPOINT = "https://graphql-pokemon2.vercel.app/"
-const pokemonQuery = `
+export const API_ENDPOINT = "https://graphql-pokemon2.vercel.app/"
+export const pokemonQuery = `
   query PokemonList($size: Int!) {
     pokemons(first: $size) {
       id

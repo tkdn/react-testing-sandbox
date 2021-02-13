@@ -1,22 +1,27 @@
 import { act, cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { QueryClient, QueryClientProvider } from "react-query"
 
-import { NativeFetch } from "~/components/NativeFetch"
+import { ReactQuery } from "~/components/ReactQuery"
 import { ErrorBoundary } from "~/test-utils/ErrorBoundary"
 
-const WrappedNativeFetch = ({ size }: { size: number }) => {
+const client = new QueryClient()
+
+const WrappedReactQuery = ({ size }: { size: number }) => {
   return (
     <ErrorBoundary>
-      <NativeFetch size={size} />
+      <QueryClientProvider client={client}>
+        <ReactQuery size={size} />
+      </QueryClientProvider>
     </ErrorBoundary>
   )
 }
 
-describe("NativeFetch", () => {
+describe("ReactQuery", () => {
   afterEach(() => {
     cleanup()
   })
   test("render:loding", async () => {
-    const { asFragment } = render(<WrappedNativeFetch size={5} />)
+    const { asFragment } = render(<WrappedReactQuery size={5} />)
     screen.getByText("loading...")
     expect(asFragment()).toMatchSnapshot()
     await act(async () => {
@@ -24,7 +29,7 @@ describe("NativeFetch", () => {
     })
   })
   test("render:pokemons", async () => {
-    const { asFragment } = render(<WrappedNativeFetch size={5} />)
+    const { asFragment } = render(<WrappedReactQuery size={5} />)
     screen.getByText("loading...")
     await act(async () => {
       await waitForElementToBeRemoved(() => screen.getByText("loading..."))
@@ -32,7 +37,7 @@ describe("NativeFetch", () => {
     expect(asFragment()).toMatchSnapshot()
   })
   test("render:no pokemon", async () => {
-    const { asFragment } = render(<WrappedNativeFetch size={0} />)
+    const { asFragment } = render(<WrappedReactQuery size={0} />)
     await act(async () => {
       await waitFor(() => screen.getByText("no pokemon"))
     })
@@ -41,7 +46,7 @@ describe("NativeFetch", () => {
   test("error", async () => {
     const spy = jest.spyOn(console, "error")
     spy.mockImplementation(() => void 0)
-    render(<WrappedNativeFetch size={400} />)
+    render(<WrappedReactQuery size={400} />)
     await act(async () => {
       await waitFor(() => screen.getByText("http status: 400"))
     })
