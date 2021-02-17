@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 
 import { NativeFetch } from "~/components/NativeFetch"
 import { ErrorBoundary } from "~/test-utils/ErrorBoundary"

@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { ReactQuery } from "~/components/ReactQuery"
