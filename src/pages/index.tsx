@@ -16,6 +16,9 @@ export default function Index() {
           <li>
             <Link href="/react-query">ReactQuery</Link>
           </li>
+          <li>
+            <Link href="/apollo">apollo</Link>
+          </li>
         </ul>
       </nav>
       <hr />
