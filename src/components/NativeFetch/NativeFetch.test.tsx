@@ -62,25 +62,19 @@ describe("NativeFetch", () => {
     const { asFragment } = render(<WrappedNativeFetch size={5} />)
     screen.getByText("loading...")
     expect(asFragment()).toMatchSnapshot()
-    await act(async () => {
-      await waitForElementToBeRemoved(() => screen.getByText("loading..."))
-    })
+    await waitForElementToBeRemoved(() => screen.getByText("loading..."))
   })
   test("render:pokemons", async () => {
     global.fetch = jest.fn().mockImplementation(dataPokemonsMock)
     const { asFragment } = render(<WrappedNativeFetch size={5} />)
     screen.getByText("loading...")
-    await act(async () => {
-      await waitForElementToBeRemoved(() => screen.getByText("loading..."))
-    })
+    await waitForElementToBeRemoved(() => screen.getByText("loading..."))
     expect(asFragment()).toMatchSnapshot()
   })
   test("render:no pokemon", async () => {
     global.fetch = jest.fn().mockImplementation(noDataPokemonsMock)
     const { asFragment } = render(<WrappedNativeFetch size={0} />)
-    await act(async () => {
-      await waitFor(() => screen.getByText("no pokemon"))
-    })
+    await waitFor(() => screen.getByText("no pokemon"))
     expect(asFragment()).toMatchSnapshot()
   })
   test("error", async () => {
@@ -88,9 +82,7 @@ describe("NativeFetch", () => {
     const spy = jest.spyOn(console, "error")
     spy.mockImplementation(() => void 0)
     render(<WrappedNativeFetch size={5} />)
-    await act(async () => {
-      await waitFor(() => screen.getByText("http status: 400"))
-    })
+    await waitFor(() => screen.getByText("http status: 400"))
     spy.mockRestore()
   })
 })

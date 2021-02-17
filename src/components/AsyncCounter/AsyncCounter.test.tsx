@@ -13,13 +13,13 @@ describe("AsyncCounter", () => {
   })
 
   describe("click:count:カウントアップ", () => {
-    test("ボタン押下 1 秒後は 1 カウントアップ", async () => {
+    test("ボタン押下 1 秒後は 1 カウントアップ", () => {
       jest.useFakeTimers() /** 時間詐称 */
       render(<AsyncCounter />)
       const button = screen.getByText("AsyncIncrement") as HTMLButtonElement
       fireEvent.click(button)
-      await act(async () => {
-        await jest.advanceTimersByTime(1200)
+      act(() => {
+        jest.advanceTimersByTime(1200)
       })
       screen.getByText("AsyncCount: 1")
       jest.useRealTimers() /** 時を戻そう */
@@ -33,13 +33,13 @@ describe("AsyncCounter", () => {
       fireEvent.click(button)
       expect(button.disabled).toBe(true)
     })
-    test("ボタン押下 1 秒後はボタンが活性", async () => {
+    test("ボタン押下 1 秒後はボタンが活性", () => {
       jest.useFakeTimers() /** 時間詐称 */
       render(<AsyncCounter />)
       const button = screen.getByText("AsyncIncrement") as HTMLButtonElement
       fireEvent.click(button)
-      await act(async () => {
-        await jest.advanceTimersByTime(1000)
+      act(() => {
+        jest.advanceTimersByTime(1000)
       })
       expect(button.disabled).toBe(false)
       jest.useRealTimers() /** 時を戻そう */
@@ -53,13 +53,13 @@ describe("AsyncCounter", () => {
       fireEvent.click(button)
       expect(screen.queryByText("...Loading")).not.toBeNull()
     })
-    test("ボタン押下直後はローディングが非表示", async () => {
+    test("ボタン押下直後はローディングが非表示", () => {
       jest.useFakeTimers() /** 時間詐称 */
       render(<AsyncCounter />)
       const button = screen.getByText("AsyncIncrement")
       fireEvent.click(button)
-      await act(async () => {
-        await jest.advanceTimersByTime(1000)
+      act(() => {
+        jest.advanceTimersByTime(1000)
       })
       expect(screen.queryByText("...Loading")).toBeNull()
       jest.useRealTimers() /** 時を戻そう */
