@@ -1,17 +1,27 @@
-import { QueryClient, QueryClientProvider } from "react-query"
+import Link from "next/link"
 
 import { Analytics } from "~/components/Analytics"
 import { AsyncCounter } from "~/components/AsyncCounter"
 import { Counter } from "~/components/Counter"
 import { Header } from "~/components/Header"
-import { NativeFetch } from "~/components/NativeFetch"
-import { ReactQuery } from "~/components/ReactQuery"
-
-const client = new QueryClient()
 
 export default function Index() {
   return (
     <>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/native-fetch">NativeFetch</Link>
+          </li>
+          <li>
+            <Link href="/react-query">ReactQuery</Link>
+          </li>
+          <li>
+            <Link href="/apollo">apollo</Link>
+          </li>
+        </ul>
+      </nav>
+      <hr />
       <h1>Header</h1>
       <Header />
       <hr />
@@ -24,14 +34,6 @@ export default function Index() {
       <h1>Analytics</h1>
       <pre>null</pre>
       <Analytics id="123" role="admin" />
-      <hr />
-      <h1>NativeFetch</h1>
-      <NativeFetch size={5} />
-      <hr />
-      <h1>ReactQuery</h1>
-      <QueryClientProvider client={client}>
-        <ReactQuery size={5} />
-      </QueryClientProvider>
     </>
   )
 }
