@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button render 1`] = `
+<DocumentFragment>
+  <div>
+    <input
+      type="text"
+      value=""
+    />
+    <br />
+    <button>
+      Alert
+    </button>
+    <br />
+    <button>
+      Alert Close
+    </button>
+  </div>
+</DocumentFragment>
+`;
