@@ -19,7 +19,7 @@ describe("AsyncCounter", () => {
       const button = screen.getByText("AsyncIncrement") as HTMLButtonElement
       fireEvent.click(button)
       act(() => {
-        jest.advanceTimersByTime(1200)
+        jest.runAllTimers()
       })
       screen.getByText("AsyncCount: 1")
       jest.useRealTimers() /** 時を戻そう */
@@ -39,7 +39,7 @@ describe("AsyncCounter", () => {
       const button = screen.getByText("AsyncIncrement") as HTMLButtonElement
       fireEvent.click(button)
       act(() => {
-        jest.advanceTimersByTime(1000)
+        jest.runAllTimers()
       })
       expect(button.disabled).toBe(false)
       jest.useRealTimers() /** 時を戻そう */
@@ -59,7 +59,7 @@ describe("AsyncCounter", () => {
       const button = screen.getByText("AsyncIncrement")
       fireEvent.click(button)
       act(() => {
-        jest.advanceTimersByTime(1000)
+        jest.runAllTimers()
       })
       expect(screen.queryByText("...Loading")).toBeNull()
       jest.useRealTimers() /** 時を戻そう */
