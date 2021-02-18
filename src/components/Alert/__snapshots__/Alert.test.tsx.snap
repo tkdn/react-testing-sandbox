@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert render: context update 1`] = `
+<DocumentFragment>
+  <div
+    style="background: red; padding: 10px;"
+  >
+    test message
+  </div>
+</DocumentFragment>
+`;
