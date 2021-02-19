@@ -1,14 +1,15 @@
 import Link from "next/link"
 
 import { Alert } from "~/components/Alert"
-import { Analytics } from "~/components/Analytics"
 import { AsyncCounter } from "~/components/AsyncCounter"
 import { Button } from "~/components/Button"
 import { Counter } from "~/components/Counter"
 import { Header } from "~/components/Header"
 import { AlertProvider } from "~/context/AlertContext"
+import { useInitialAnalytics } from "~/hooks/useInitialAnalytics"
 
 export default function Index() {
+  useInitialAnalytics({ id: "123", role: "admin" })
   return (
     <AlertProvider>
       <Alert />
@@ -37,10 +38,6 @@ export default function Index() {
       <hr />
       <h1>Alert Button Context</h1>
       <Button />
-      <hr />
-      <h1>Analytics</h1>
-      <pre>null</pre>
-      <Analytics id="123" role="admin" />
     </AlertProvider>
   )
 }

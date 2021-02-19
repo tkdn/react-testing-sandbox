@@ -6,10 +6,9 @@ type User = {
   id: string
   role: string
 }
-export function Analytics(user: User) {
+export function useInitialAnalytics(user: User) {
   useEffect(() => {
     setStatus(user)
     sendPageview()
   }, [])
-  return null
 }
