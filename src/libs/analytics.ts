@@ -1,5 +1,7 @@
 const tracker = ""
-const fallbackFn = () => void 0
+const fallbackFn = (command: string, ...fields: unknown[]) => {
+  console.log(`window.ga(`, command, ...fields, `)`)
+}
 const ga = typeof window !== "undefined" ? window?.ga || fallbackFn : fallbackFn
 
 export function setStatus(status: Record<string, unknown>) {

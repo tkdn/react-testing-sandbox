@@ -16,7 +16,7 @@ describe("AsyncCounter", () => {
     test("ボタン押下 1 秒後は 1 カウントアップ", () => {
       jest.useFakeTimers() /** 時間詐称 */
       render(<AsyncCounter />)
-      const button = screen.getByText("AsyncIncrement") as HTMLButtonElement
+      const button = screen.getByText("AsyncIncrement")
       fireEvent.click(button)
       act(() => {
         jest.runAllTimers()
@@ -29,19 +29,19 @@ describe("AsyncCounter", () => {
   describe("click:count:ボタン活性・非活性", () => {
     test("ボタン押下直後はボタンが非活性", () => {
       render(<AsyncCounter />)
-      const button = screen.getByText("AsyncIncrement") as HTMLButtonElement
+      const button = screen.getByText("AsyncIncrement")
       fireEvent.click(button)
-      expect(button.disabled).toBe(true)
+      expect(button).toBeDisabled()
     })
     test("ボタン押下 1 秒後はボタンが活性", () => {
       jest.useFakeTimers() /** 時間詐称 */
       render(<AsyncCounter />)
-      const button = screen.getByText("AsyncIncrement") as HTMLButtonElement
+      const button = screen.getByText("AsyncIncrement")
       fireEvent.click(button)
       act(() => {
         jest.runAllTimers()
       })
-      expect(button.disabled).toBe(false)
+      expect(button).not.toBeDisabled()
       jest.useRealTimers() /** 時を戻そう */
     })
   })
@@ -51,7 +51,7 @@ describe("AsyncCounter", () => {
       render(<AsyncCounter />)
       const button = screen.getByText("AsyncIncrement")
       fireEvent.click(button)
-      expect(screen.queryByText("...Loading")).not.toBeNull()
+      expect(screen.queryByText("...Loading")).toBeInTheDocument()
     })
     test("ボタン押下直後はローディングが非表示", () => {
       jest.useFakeTimers() /** 時間詐称 */
@@ -61,7 +61,7 @@ describe("AsyncCounter", () => {
       act(() => {
         jest.runAllTimers()
       })
-      expect(screen.queryByText("...Loading")).toBeNull()
+      expect(screen.queryByText("...Loading")).not.toBeInTheDocument()
       jest.useRealTimers() /** 時を戻そう */
     })
   })
