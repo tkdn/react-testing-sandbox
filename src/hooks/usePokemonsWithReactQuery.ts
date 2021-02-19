@@ -23,6 +23,9 @@ export function usePokemonsWithReactQuery(size: number) {
         throw new Error(`http status: ${response.status}`)
       }
     },
-    { retry: false }
+    {
+      refetchOnWindowFocus: false,
+      retry: false
+    }
   )
 }
