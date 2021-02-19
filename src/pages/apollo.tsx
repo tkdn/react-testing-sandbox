@@ -5,7 +5,8 @@ import { Apollo } from "~/components/Apollo"
 
 const apolloClient = new ApolloClient({
   uri: API_ENDPOINT,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  connectToDevTools: true
 })
 
 export default function ApolloPage() {
