@@ -2,6 +2,7 @@ import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@te
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { ReactQuery } from "~/components/ReactQuery"
+import { server } from "~/test-utils/api-mock-server/server"
 import { ErrorBoundary } from "~/test-utils/ErrorBoundary"
 
 const client = new QueryClient()
@@ -17,8 +18,15 @@ const WrappedReactQuery = ({ size }: { size: number }) => {
 }
 
 describe("ReactQuery", () => {
+  beforeAll(() => {
+    server.listen()
+  })
   afterEach(() => {
     cleanup()
+    server.resetHandlers()
+  })
+  afterAll(() => {
+    server.close()
   })
   test("render:loding", async () => {
     const { asFragment } = render(<WrappedReactQuery size={5} />)

@@ -4,22 +4,22 @@ import * as AlertContext from "~/context/AlertContext"
 
 import { Button } from "./"
 
-let alertDispatch: jest.SpyInstance<unknown>
+let useAlertDispatchSpy: jest.SpyInstance<unknown>
 let alertShowDispatchSpy: jest.SpyInstance<unknown>
 let alertHideDispatchSpy: jest.SpyInstance<unknown>
 
 describe("Button", () => {
   beforeEach(() => {
-    alertDispatch = jest.spyOn(AlertContext, "useAlertDispatch")
+    useAlertDispatchSpy = jest.spyOn(AlertContext, "useAlertDispatch")
     alertShowDispatchSpy = jest.fn()
     alertHideDispatchSpy = jest.fn()
-    alertDispatch.mockImplementation(() => ({
+    useAlertDispatchSpy.mockImplementation(() => ({
       showDispatcher: alertShowDispatchSpy,
       hideDispatcher: alertHideDispatchSpy
     }))
   })
   afterEach(() => {
-    alertDispatch.mockClear()
+    useAlertDispatchSpy.mockClear()
     alertShowDispatchSpy.mockClear()
     alertHideDispatchSpy.mockClear()
     cleanup()

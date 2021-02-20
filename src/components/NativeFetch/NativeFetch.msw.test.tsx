@@ -1,6 +1,7 @@
 import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 
 import { NativeFetch } from "~/components/NativeFetch"
+import { server } from "~/test-utils/api-mock-server/server"
 import { ErrorBoundary } from "~/test-utils/ErrorBoundary"
 
 const WrappedNativeFetch = ({ size }: { size: number }) => {
@@ -12,8 +13,15 @@ const WrappedNativeFetch = ({ size }: { size: number }) => {
 }
 
 describe("NativeFetch", () => {
+  beforeAll(() => {
+    server.listen()
+  })
   afterEach(() => {
     cleanup()
+    server.resetHandlers()
+  })
+  afterAll(() => {
+    server.close()
   })
   test("render:loding", async () => {
     const { asFragment } = render(<WrappedNativeFetch size={5} />)
