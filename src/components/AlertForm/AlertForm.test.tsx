@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react"
+import { cleanup, fireEvent, render } from "@testing-library/react"
 
 import * as AlertContext from "~/context/AlertContext"
 
@@ -28,7 +28,7 @@ describe("AlertForm", () => {
     const { asFragment } = render(<AlertForm />)
     expect(asFragment()).toMatchSnapshot()
   })
-  test("click: show message dispatch", () => {
+  test("click: show dispatch", () => {
     const { container } = render(<AlertForm />)
     const input = container.querySelector("input") as HTMLInputElement
     const button = container.querySelector("button") as HTMLButtonElement
@@ -36,10 +36,20 @@ describe("AlertForm", () => {
     fireEvent.click(button)
     expect(alertShowDispatchSpy).toBeCalledWith("test message")
   })
+  test("submit: show dispatch", () => {
+    const { container } = render(<AlertForm />)
+    const input = container.querySelector("input") as HTMLInputElement
+    const form = container.querySelector("form") as HTMLFormElement
+    fireEvent.change(input, { target: { value: "test message" } })
+    fireEvent.submit(form, { value: "test message" })
+    expect(alertShowDispatchSpy).toBeCalledWith("test message")
+  })
   test("click: hide dispatch", () => {
-    render(<AlertForm />)
-    const button = screen.getByText("Alert Close")
+    const { getByText, container } = render(<AlertForm />)
+    const button = getByText("Alert Close")
+    const input = container.querySelector("input") as HTMLInputElement
     fireEvent.click(button)
+    expect(input.value).toBe("")
     expect(alertHideDispatchSpy).toBeCalled()
   })
 })
