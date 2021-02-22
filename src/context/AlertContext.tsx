@@ -21,7 +21,7 @@ const alertDispatchContext = createContext<AlertDispatch>({
 export const useAlertState = () => useContext(alertStateContext)
 export const useAlertDispatch = () => useContext(alertDispatchContext)
 
-export function AlertProvider({ children }: { children: JSX.Element[] }) {
+export function AlertProvider({ children }: { children: JSX.Element[] | JSX.Element }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const showDispatcher = useCallback((message: string) => dispatch(showAlert(message)), [])
   const hideDispatcher = useCallback(() => dispatch(hideAlert()), [])

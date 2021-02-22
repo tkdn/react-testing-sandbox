@@ -23,11 +23,12 @@ describe("Alert", () => {
     expect(container.innerHTML).toBe("")
   })
   test("render: context update", () => {
+    const { asFragment, rerender } = render(<Alert />)
     alertStateSpy.mockImplementation(() => ({
       show: true,
       message: "test message"
     }))
-    const { asFragment } = render(<Alert />)
+    rerender(<Alert />)
     expect(asFragment()).toMatchSnapshot()
   })
 })
