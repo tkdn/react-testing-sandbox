@@ -3,7 +3,7 @@
 exports[`Alert render: context update 1`] = `
 <DocumentFragment>
   <div
-    style="background: red; padding: 10px;"
+    style="position: fixed; top: 0px; left: 0px; width: 100%; padding: 10px; opacity: 0.6; background: red; color: white; font-weight: bold;"
   >
     test message
   </div>

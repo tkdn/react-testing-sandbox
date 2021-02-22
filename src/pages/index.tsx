@@ -1,8 +1,8 @@
 import Link from "next/link"
 
 import { Alert } from "~/components/Alert"
+import { AlertForm } from "~/components/AlertForm"
 import { AsyncCounter } from "~/components/AsyncCounter"
-import { Button } from "~/components/Button"
 import { Counter } from "~/components/Counter"
 import { Header } from "~/components/Header"
 import { AlertProvider } from "~/context/AlertContext"
@@ -36,8 +36,8 @@ export default function Index() {
       <h1>AsyncCounter</h1>
       <AsyncCounter />
       <hr />
-      <h1>Alert Button Context</h1>
-      <Button />
+      <h1>AlertForm Context</h1>
+      <AlertForm />
     </AlertProvider>
   )
 }
