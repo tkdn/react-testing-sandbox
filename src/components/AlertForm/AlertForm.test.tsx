@@ -45,11 +45,9 @@ describe("AlertForm", () => {
     expect(alertShowDispatchSpy).toBeCalledWith("test message")
   })
   test("click: hide dispatch", () => {
-    const { getByText, container } = render(<AlertForm />)
+    const { getByText } = render(<AlertForm />)
     const button = getByText("Alert Close")
-    const input = container.querySelector("input") as HTMLInputElement
     fireEvent.click(button)
-    expect(input.value).toBe("")
     expect(alertHideDispatchSpy).toBeCalled()
   })
 })
