@@ -41,7 +41,7 @@ describe("AlertForm", () => {
     const input = container.querySelector("input") as HTMLInputElement
     const form = container.querySelector("form") as HTMLFormElement
     fireEvent.change(input, { target: { value: "test message" } })
-    fireEvent.submit(form, { value: "test message" })
+    fireEvent.submit(form)
     expect(alertShowDispatchSpy).toBeCalledWith("test message")
   })
   test("click: hide dispatch", () => {
