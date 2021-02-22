@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react"
 
 import { useAlertDispatch } from "~/context/AlertContext"
 
-export function Button() {
+export function AlertForm() {
   const [text, setText] = useState("")
   const { showDispatcher, hideDispatcher } = useAlertDispatch()
   const onSubmitHandler = (e: FormEvent) => {
