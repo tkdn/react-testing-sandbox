@@ -34,10 +34,9 @@ export function AlertProvider({ children }: { children: JSX.Element[] }) {
   )
 }
 
-type AlertShowAction = ReturnType<typeof showAlert>
-type AlertHideAction = ReturnType<typeof hideAlert>
+type AlertAction = ReturnType<typeof showAlert> | ReturnType<typeof hideAlert>
 
-function reducer(state: AlertState, action: AlertShowAction | AlertHideAction) {
+function reducer(state: AlertState, action: AlertAction) {
   switch (action.type) {
     case "ui/alert:show":
       return {

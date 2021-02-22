@@ -1,21 +1,31 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 
 import { useAlertDispatch } from "~/context/AlertContext"
 
 export function Button() {
   const [text, setText] = useState("")
   const { showDispatcher, hideDispatcher } = useAlertDispatch()
-  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onSubmitHandler = (e: FormEvent) => {
+    e.preventDefault()
+    setText(text)
+    showDispatcher(text)
+  }
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget
     setText(value)
   }
+  const onCloseHandler = () => {
+    setText("")
+    hideDispatcher()
+  }
   return (
-    <div>
-      <input type="text" value={text} onChange={changeHandler} />
-      <br />
+    <form onSubmit={onSubmitHandler}>
+      <input type="text" value={text} onChange={onChangeHandler} />
       <button onClick={() => showDispatcher(text)}>Alert</button>
       <br />
-      <button onClick={() => hideDispatcher()}>Alert Close</button>
-    </div>
+      <button type="reset" onClick={onCloseHandler}>
+        Alert Close
+      </button>
+    </form>
   )
 }
