@@ -1,9 +1,10 @@
-import { act, cleanup, renderHook, RenderResult } from "@testing-library/react-hooks"
+import { act, cleanup, renderHook } from "@testing-library/react"
+import { ReactNode } from "react"
 
 import { AlertProvider, useAlertDispatch, useAlertState } from "./AlertContext"
 
-function wrapper({ children }: { children: JSX.Element[] }) {
-  return <AlertProvider>{children}</AlertProvider>
+function wrapper(props: { children: ReactNode }) {
+  return <AlertProvider>{props.children}</AlertProvider>
 }
 
 function useAlertContextTest() {
@@ -18,31 +19,29 @@ function useAlertContextTest() {
 }
 
 describe("AlertContext", () => {
-  let renderResult: RenderResult<ReturnType<typeof useAlertContextTest>>
-
-  beforeEach(() => {
-    const { result } = renderHook(() => useAlertContextTest(), { wrapper })
-    renderResult = result
-  })
   afterEach(() => {
     cleanup()
   })
 
   test("context: initial state", () => {
-    expect(renderResult.current.show).not.toBe(true)
-    expect(renderResult.current.message).toBe("")
+    const { result } = renderHook(() => useAlertContextTest(), { wrapper })
+
+    expect(result.current.show).not.toBe(true)
+    expect(result.current.message).toBe("")
   })
   test("context: update state", () => {
+    const { result } = renderHook(() => useAlertContextTest(), { wrapper })
+
     // show
     act(() => {
-      renderResult.current.showDispatcher("test message")
+      result.current.showDispatcher("test message")
     })
-    expect(renderResult.current.show).toBe(true)
-    expect(renderResult.current.message).toBe("test message")
+    expect(result.current.show).toBe(true)
+    expect(result.current.message).toBe("test message")
     // hide
     act(() => {
-      renderResult.current.hideDispatcher()
+      result.current.hideDispatcher()
     })
-    expect(renderResult.current.show).not.toBe(true)
+    expect(result.current.show).not.toBe(true)
   })
 })

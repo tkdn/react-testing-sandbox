@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useReducer } from "react"
+import { createContext, ReactNode, useCallback, useContext, useReducer } from "react"
 
 type AlertState = {
   show: boolean
@@ -21,7 +21,7 @@ const alertDispatchContext = createContext<AlertDispatch>({
 export const useAlertState = () => useContext(alertStateContext)
 export const useAlertDispatch = () => useContext(alertDispatchContext)
 
-export function AlertProvider({ children }: { children: JSX.Element[] | JSX.Element }) {
+export function AlertProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const showDispatcher = useCallback((message: string) => dispatch(showAlert(message)), [])
   const hideDispatcher = useCallback(() => dispatch(hideAlert()), [])

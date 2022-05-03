@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks"
+import { renderHook } from "@testing-library/react"
 
 import { useInitialAnalytics } from "~/hooks/useInitialAnalytics"
 import * as analyticsModule from "~/libs/analytics"
