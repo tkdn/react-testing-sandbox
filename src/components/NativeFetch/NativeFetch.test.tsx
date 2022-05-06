@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 
 import { NativeFetch } from "~/components/NativeFetch"
 import { ErrorBoundary } from "~/test-utils/ErrorBoundary"
@@ -51,9 +51,6 @@ const statusErrorPokemonMock = () =>
   })
 
 describe("NativeFetch", () => {
-  afterEach(() => {
-    cleanup()
-  })
   afterAll(() => {
     ;(global.fetch as jest.Mock).mockClear()
   })

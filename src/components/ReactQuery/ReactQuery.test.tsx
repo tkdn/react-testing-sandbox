@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { ReactQuery } from "~/components/ReactQuery"
@@ -22,7 +22,6 @@ describe("ReactQuery", () => {
     server.listen()
   })
   afterEach(() => {
-    cleanup()
     server.resetHandlers()
   })
   afterAll(() => {

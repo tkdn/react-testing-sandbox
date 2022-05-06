@@ -1,4 +1,4 @@
-import { act, cleanup, renderHook } from "@testing-library/react"
+import { act, renderHook } from "@testing-library/react"
 import { ReactNode } from "react"
 
 import { AlertProvider, useAlertDispatch, useAlertState } from "./AlertContext"
@@ -19,10 +19,6 @@ function useAlertContextTest() {
 }
 
 describe("AlertContext", () => {
-  afterEach(() => {
-    cleanup()
-  })
-
   test("context: initial state", () => {
     const { result } = renderHook(() => useAlertContextTest(), { wrapper })
 

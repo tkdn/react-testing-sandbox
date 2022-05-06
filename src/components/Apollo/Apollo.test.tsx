@@ -1,5 +1,5 @@
 import { MockedProvider, MockedResponse } from "@apollo/client/testing"
-import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 
 import { Apollo } from "~/components/Apollo"
 import { ErrorBoundary } from "~/test-utils/ErrorBoundary"
@@ -17,9 +17,6 @@ const WrappedApollo = ({ mocks }: { mocks: MockedResponse[] }) => {
 }
 
 describe("Apollo", () => {
-  afterEach(() => {
-    cleanup()
-  })
   test("render:loding", () => {
     const { asFragment } = render(<WrappedApollo mocks={mocksSuccess} />)
     screen.getByText("loading...")

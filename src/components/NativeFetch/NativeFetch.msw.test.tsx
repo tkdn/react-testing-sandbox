@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 
 import { NativeFetch } from "~/components/NativeFetch"
 import { server } from "~/test-utils/api-mock-server/server"
@@ -17,7 +17,6 @@ describe("NativeFetch", () => {
     server.listen()
   })
   afterEach(() => {
-    cleanup()
     server.resetHandlers()
   })
   afterAll(() => {

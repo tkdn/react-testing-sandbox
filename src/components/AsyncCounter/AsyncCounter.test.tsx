@@ -1,12 +1,8 @@
-import { act, cleanup, fireEvent, render, screen } from "@testing-library/react"
+import { act, fireEvent, render, screen } from "@testing-library/react"
 
 import { AsyncCounter } from "./"
 
 describe("AsyncCounter", () => {
-  afterEach(() => {
-    cleanup()
-  })
-
   test("render", () => {
     const { asFragment } = render(<AsyncCounter />)
     expect(asFragment()).toMatchSnapshot()
