@@ -14,6 +14,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:@next/next/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
@@ -29,6 +30,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "simple-import-sort"],
   rules: {
+    "@next/next/no-img-element": 0,
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
