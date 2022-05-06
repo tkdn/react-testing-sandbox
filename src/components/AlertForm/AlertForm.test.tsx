@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from "@testing-library/react"
+import { fireEvent, render } from "@testing-library/react"
 
 import * as AlertContext from "~/context/AlertContext"
 
@@ -22,7 +22,6 @@ describe("AlertForm", () => {
     useAlertDispatchSpy.mockClear()
     alertShowDispatchSpy.mockClear()
     alertHideDispatchSpy.mockClear()
-    cleanup()
   })
   test("render", () => {
     const { asFragment } = render(<AlertForm />)

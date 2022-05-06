@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react"
+import { render } from "@testing-library/react"
 
 import * as AlertContext from "~/context/AlertContext"
 
@@ -16,7 +16,6 @@ describe("Alert", () => {
   })
   afterEach(() => {
     alertStateSpy.mockClear()
-    cleanup()
   })
   test("render: null", () => {
     const { container } = render(<Alert />)
